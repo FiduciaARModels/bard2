@@ -7,19 +7,27 @@
   <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe-gltf-model/dist/aframe-gltf-model.min.js"></script>
 </head>
 <body style='margin : 0px; overflow: hidden;'>
-  <a-scene embedded arjs='sourceType: webcam;'>
-    <a-gltf-model src="lv.glb" position="0 0 -1" scale="0.5 0.5 0.5"></a-gltf-model>
+  <a-scene embedded arjs='sourceType: webcam; enabled: false;'>
+    <a-gltf-model src="path/to/your/glb/model.glb" position="0 0 -1" scale="0.5 0.5 0.5"></a-gltf-model>
     <a-marker-camera preset='hiro'></a-marker-camera>
-    <a-entity id="button" position="0 1 0" material="color: blue;" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.1" on="click: toggleAR">
-      <a-text value="Toggle AR" position="0 0 0.05" color="white"></a-text>
+    <a-entity id="enableButton" position="0 1 0" material="color: blue;" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.1" on="click: enableAR">
+      <a-text value="Enable AR" position="0 0 0.05" color="white"></a-text>
+    </a-entity>
+    <a-entity id="disableButton" position="0 1.5 0" material="color: red;" geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.1" on="click: disableAR">
+      <a-text value="Disable AR" position="0 0 0.05" color="white"></a-text>
     </a-entity>
   </a-scene>
 </body>
 <script>
   var scene = document.querySelector('a-scene');
 
-  function toggleAR() {
-    scene.components['embedded-ar'].enabled = !scene.components['embedded-ar'].enabled;
+  function enableAR() {
+    scene.components['embedded-ar'].enabled = true;
   }
+
+  function disableAR() {
+    scene.components['embedded-ar'].enabled = false;
+  }
+
 </script>
 </html>
